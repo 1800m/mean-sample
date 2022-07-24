@@ -17,6 +17,13 @@ bash build.sh ${TAG}
 bash run.sh
 ```
 
+## Dockerコンテナの停止・削除
+
+```bash
+# run.shで起動したコンテナを停止して削除する
+bash down.sh
+```
+
 
 ## MongoDBの初期化
 
