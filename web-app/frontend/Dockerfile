@@ -7,9 +7,14 @@ ARG GNAME=app
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y sudo nginx
+    apt-get install -y \
+    sudo \
+    vim \
+    nginx
 
-RUN npm install  && \
+COPY ./package.json /workspace/app/frontend/
+WORKDIR /workspace/app/frontend
+RUN npm install && \
     npm cache clean --force
 
 RUN userdel -r node
@@ -18,6 +23,4 @@ RUN groupadd -g $GID $GNAME && \
     echo "$UNAME:$UNAME" | chpasswd
 RUN echo 'Defaults visiblepw'             >> /etc/sudoers
 RUN echo "${UNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
 USER ${UNAME}
-WORKDIR /workspace/app/frontend
