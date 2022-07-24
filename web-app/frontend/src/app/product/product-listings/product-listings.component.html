@@ -1,0 +1,18 @@
+<br>
+<div class="container">
+  <div class="row">
+      <div *ngFor="let product of products; let productId = index" class="col-sm">
+          <a [routerLink]="[ product._id ]">
+              <div class="card">
+                  <!-- <img src="./assets/img/pngtree-gray-network-placeholder-png-image_3416659.jpg" class="card-img-top" alt="..."> -->
+                  <img src="{{ product.coverImage }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <p class="card-title">{{ product.name }}</p>
+                      <p class="card-text">{{ product.description }}</p>
+                  </div>
+              </div>
+          </a>
+      </div>
+  </div>
+</div>
+

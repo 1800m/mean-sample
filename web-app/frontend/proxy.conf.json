@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://web-app-be:3001",
+    "secure": false
+  }
+}
