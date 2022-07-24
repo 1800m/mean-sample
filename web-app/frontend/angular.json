@@ -113,5 +113,8 @@
       }
     }
   },
-  "defaultProject": "mean-sample"
+  "defaultProject": "mean-sample",
+  "cli": {
+    "analytics": false
+  }
 }
