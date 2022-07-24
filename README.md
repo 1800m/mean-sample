@@ -46,6 +46,8 @@ docker exec -i mongodb-primary bash -c "mongo reservation-app-dev /docker-entryp
 ```bash
 # コンテナのログイン
 docker exec -it web-app-fe bash
+# カレントディレクトリ(frontend)にnode_moduleディレクトリがなければ以下を実行
+npm install
 # アプリの起動
 npm run start-dev
 # アプリの停止
@@ -56,8 +58,14 @@ Ctrl+C
 ```bash
 # コンテナのログイン
 docker exec -it web-app-be bash
+# カレントディレクトリ(backend)にnode_moduleディレクトリがなければ以下を実行
+npm install
 # アプリの起動
 npm run start-dev
 # アプリの停止
 Ctrl+C
 ```
+
+### Web画面
+FE/BEアプリ起動後にブラウザで下記にアクセスする。<br>
+<localhost:4200>
