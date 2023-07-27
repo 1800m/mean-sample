@@ -29,7 +29,7 @@ bash down.sh
 
 ```bash
 # レプリカセット設定
-docker exec -i mongodb-primary bash -c "mongo /docker-entrypoint-initdb.d/init.js"
+docker exec -i mongodb bash -c "mongosh /docker-entrypoint-initdb.d/init.js"
 ```
 
 ### ダミーデータの挿入
@@ -37,7 +37,7 @@ docker exec -i mongodb-primary bash -c "mongo /docker-entrypoint-initdb.d/init.j
 ```bash
 # 3件分のダミーデータ
 # reservation-app-dev（DB名）を変えれば任意のDBに書込可能
-docker exec -i mongodb-primary bash -c "mongo reservation-app-dev /docker-entrypoint-initdb.d/dummy-data.js"
+docker exec -i mongodb bash -c "mongosh reservation-app-dev /docker-entrypoint-initdb.d/dummy-data.js"
 ```
 
 ## アプリ起動

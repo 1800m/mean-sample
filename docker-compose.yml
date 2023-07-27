@@ -48,7 +48,7 @@ services:
     networks:
       - replset
     links: 
-      - mongodb-primary
+      - mongodb
     logging:
       driver: json-file
       options:
@@ -56,62 +56,20 @@ services:
         max-size: 3m
 
 
-  mongodb-primary:
-    container_name: mongodb-primary
-    hostname: mongodb-primary
-    image: mongo:4.0.3
+  mongodb:
+    container_name: mongodb
+    hostname: mongodb
+    image: mongo:6.0.8
     restart: always
     volumes:
-      - ./mongodb/primary/db:/data/db
-      - ./mongodb/primary/configdb:/data/configdb
+      - ./mongodb/db:/data/db
+      - ./mongodb/configdb:/data/configdb
       - ./mongodb/init:/docker-entrypoint-initdb.d
     command: mongod --replSet replset --oplogSize 1000
     expose:
       - 27017
     ports:
       - 50000:27017
-    networks: 
-      - replset
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
-
-  mongodb-secondary:
-    container_name: mongodb-secondary
-    hostname: mongodb-secondary
-    image: mongo:4.0.3
-    restart: always
-    volumes:
-      - ./mongodb/secondary/db:/data/db
-      - ./mongodb/secondary/configdb:/data/configdb
-    command: mongod --replSet replset --oplogSize 1000
-    expose:
-      - 27017
-    ports:
-      - 50001:27017
-    networks: 
-      - replset
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
-
-  mongodb-arbiter:
-    container_name: mongodb-arbiter
-    hostname: mongodb-arbiter
-    image: mongo:4.0.3
-    restart: always
-    volumes:
-      - ./mongodb/arbiter/db:/data/db
-      - ./mongodb/arbiter/configdb:/data/configdb
-    command: mongod --replSet replset --oplogSize 1000
-    expose:
-      - 27017
-    ports:
-      - 50002:27017
     networks: 
       - replset
     logging:
