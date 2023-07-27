@@ -1,16 +1,18 @@
-FROM node:14.17.3
+FROM node:20-bullseye-slim
 
 ARG UID=1000
 ARG GID=1000
 ARG UNAME=app
 ARG GNAME=app
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y -qq --no-install-recommends \
     sudo \
     vim \
-    nginx
+    nginx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get autoremove -y
 
 COPY ./package.json /workspace/app/frontend/
 WORKDIR /workspace/app/frontend
