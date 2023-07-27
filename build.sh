@@ -2,6 +2,7 @@
 
 TAG=$1
 DOCKERYML=docker-compose.yml
+DOCKER="docker compose"
 
 echo "TAG=${TAG}" > .env
 
@@ -10,7 +11,7 @@ GID=`id -g`
 UNAME=`id -un`
 GNAME=`id -gn`
 
-docker-compose -f ${DOCKERYML} build \
+${DOCKER} -f ${DOCKERYML} build \
     --build-arg UID="${UID}" \
     --build-arg GID="${GID}" \
     --build-arg UNAME="${UNAME}" \

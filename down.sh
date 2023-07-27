@@ -1,5 +1,6 @@
 #!bin/bash -eu
 
+DOCKER="docker compose"
 DOCKERYML=docker-compose.yml
 
-docker-compose -f ${DOCKERYML} down
+${DOCKER} -f ${DOCKERYML} down
